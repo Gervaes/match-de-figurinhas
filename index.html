@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <script>
+        function findMatches() {
+            let missingInput = document.getElementById("missing-figurinhas").value;
+            let availableInput = document.getElementById("available-figurinhas").value;
+            
+            if(missingInput && availableInput) {
+                let matchRegex = /[A-Z]{2,3} [0-9]{2}/g;
+                let missing = missingInput.match(matchRegex);
+                let available = availableInput.match(matchRegex);
+                
+                let matchsTextArea = document.getElementById("match-figurinhas");
+                matchsTextArea.value = "Quero essas: " + missing.filter(e => available.includes(e)).join(", ");
+            }
+        }
+
+        function copyMatches() {
+            let matchsTextArea = document.getElementById("match-figurinhas");
+            matchsTextArea.select();
+            document.execCommand('copy');
+        }
+
+    </script>
+    <h1>Match de Figurinhas</h1>
+    <div class="input-text-area">
+        <label for="missing-figurinhas" class="input-label">Quais faltam pra vc?</label>
+        <input name="missing-figurinhas" id="missing-figurinhas" onchange="findMatches()"></textarea>
+    </div>
+    <div>
+        <label for="available-figurinhas">Quais estão disponíveis?</label>
+        <input name="available-figurinhas" id="available-figurinhas" onchange="findMatches()"></textarea>
+    </div>
+    <div>
+        <label for="match-figurinhas">Hmm, dessas aí, você precisa de:</label>
+        <textarea name="match-figurinhas" id="match-figurinhas" onclick="copyMatches()"></textarea>
+    </div>
+</body>
+</html>
