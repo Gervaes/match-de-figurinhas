@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script></head>
 <body>
     <script>
         function findMatches() {
@@ -23,25 +24,42 @@
             }
         }
 
+        function pasteFromClipBoard(id) {
+            navigator.clipboard
+                .readText()
+                .then(text => document.getElementById(id).value = text)
+                .then(findMatches);
+        }
+
         function copyMatches() {
             let matchsTextArea = document.getElementById("match-figurinhas");
+            
             matchsTextArea.select();
             document.execCommand('copy');
+
+            Toastify({
+                text: "Copiadas!", 
+                gravity: 'bottom',
+                position: 'center',
+                style: { background: "#000"},
+                duration: 2000
+            }).showToast();
         }
 
     </script>
     <h1>Match de Figurinhas</h1>
     <div class="input-text-area">
         <label for="missing-figurinhas" class="input-label">Quais faltam pra vc?</label>
-        <input name="missing-figurinhas" id="missing-figurinhas" onchange="findMatches()"></textarea>
+        <input name="missing-figurinhas" id="missing-figurinhas" onclick="pasteFromClipBoard('missing-figurinhas')"></textarea>
     </div>
     <div>
-        <label for="available-figurinhas">Quais estão disponíveis?</label>
-        <input name="available-figurinhas" id="available-figurinhas" onchange="findMatches()"></textarea>
+        <label for="available-figurinhas">Quais tão disponíveis?</label>
+        <input name="available-figurinhas" id="available-figurinhas" onclick="pasteFromClipBoard('available-figurinhas')"></textarea>
     </div>
     <div>
         <label for="match-figurinhas">Hmm, dessas aí, você precisa de:</label>
         <textarea name="match-figurinhas" id="match-figurinhas" onclick="copyMatches()"></textarea>
     </div>
+    <footer id="toast-home"></footer>
 </body>
 </html>
