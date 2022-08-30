@@ -53,15 +53,18 @@
     <h1>Match de Figurinhas</h1>
     <div class="input-text-area">
         <label for="missing-figurinhas" class="input-label">Quais faltam pra vc?</label>
-        <input inputmode=“none” name="missing-figurinhas" id="missing-figurinhas" onclick="pasteFromClipBoard('missing-figurinhas')" onchange="findMatches()"></textarea>
+        <input inputmode=“none” name="missing-figurinhas" id="missing-figurinhas" onchange="findMatches()"></textarea>
+        <!-- <input inputmode=“none” name="missing-figurinhas" id="missing-figurinhas" onclick="pasteFromClipBoard('missing-figurinhas')" onchange="findMatches()"></textarea> -->
     </div>
     <div>
         <label for="available-figurinhas">Quais tão disponíveis?</label>
-        <input inputmode=“none” name="available-figurinhas" id="available-figurinhas" onclick="pasteFromClipBoard('available-figurinhas')" onchange="findMatches()"></textarea>
+        <input inputmode=“none” name="available-figurinhas" id="available-figurinhas" onchange="findMatches()"></textarea>
+        <!-- <input inputmode=“none” name="available-figurinhas" id="available-figurinhas" onclick="pasteFromClipBoard('available-figurinhas')" onchange="findMatches()"></textarea> -->
     </div>
     <div>
         <label for="match-figurinhas">Hmm, dessas aí, você precisa de:</label>
-        <textarea name="match-figurinhas" id="match-figurinhas" onclick="copyMatches()"></textarea>
+        <textarea name="match-figurinhas" id="match-figurinhas"></textarea>
+        <!-- <textarea name="match-figurinhas" id="match-figurinhas" onclick="copyMatches()"></textarea> -->
     </div>
     <footer id="toast-home"></footer>
 </body>
